@@ -1,3 +1,4 @@
+require("dotenv").config();
 const session = require("express-session");
 const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
 const passport = require("./passport");
