@@ -16,6 +16,13 @@ app.set("view engine", "ejs");
 // Prisma session configuration
 initializeSession(app);
 
+// Routes
+const userRoutes = require("./routes/userRouter");
+const fileRoutes = require("./routes/fileRouter");
+
+app.use(userRoutes);
+app.use(fileRoutes);
+
 const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
   `The server is running in the port ${PORT}`;
