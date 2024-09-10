@@ -6,9 +6,16 @@
     <title>Homepage</title>
 </head>
 <body>
-    <h1>Welcome <%= info.firstName %></h1>
-    <form action="/logout" method="POST">
-        <button type="submit">logout</button>
-    </form>
+    <% if(info) { %>
+        <h1>Welcome <%= info.firstName %></h1>
+        <form action="/logout" method="POST">
+            <button type="submit">logout</button>
+        </form>
+    <% } else { %>
+        <h1>Welcome to uploader file</h1>
+        <p>If you don't have an account <a href="/register">Create your account</a></p>
+        <p>If you already have an account <a href="/login">Login in your account</a></p>
+    <% } %>
+    
 </body>
 </html>
