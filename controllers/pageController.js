@@ -1,9 +1,21 @@
 const showRegisterPage = (req, res) => {
-  res.render("register");
+  const userInfo = req.session.userInfo;
+
+  if (!userInfo) {
+    res.render("register");
+  } else {
+    res.redirect("/");
+  }
 };
 
 const showLoginPage = (req, res) => {
-  res.render("login");
+  const userInfo = req.session.userInfo;
+
+  if (!userInfo) {
+    res.render("login");
+  } else {
+    res.redirect("/");
+  }
 };
 
 const showHomepage = (req, res) => {
