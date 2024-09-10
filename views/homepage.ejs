@@ -7,9 +7,16 @@
 </head>
 <body>
     <% if(info) { %>
-        <h1>Welcome <%= info.firstName %></h1>
-        <form action="/logout" method="POST">
-            <button type="submit">logout</button>
+        <header>
+            <h1>Welcome <%= info.firstName %></h1>
+            <form action="/logout" method="POST">
+                <button type="submit">logout</button>
+            </form>
+        </header>
+        <h2>Add a new file here</h2>
+        <form action="/document" method="POST" enctype="multipart/form-data">
+            <input type="file" name="document">
+            <button type="submit">upload</button>
         </form>
     <% } else { %>
         <h1>Welcome to uploader file</h1>
