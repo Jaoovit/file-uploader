@@ -1,6 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const bcrypt = require("bcryptjs");
-const passport = require("../passport-config");
+const passport = require("../config/passport");
 const prisma = new PrismaClient();
 
 const registerUser = async (req, res) => {
@@ -23,7 +23,7 @@ const registerUser = async (req, res) => {
         lastName,
       },
     });
-    res.status(201).send("USer registered successfully");
+    res.status(201).send("User registered successfully");
     res.redirect("/login");
   } catch (error) {
     res.status(500).send("Error registering user");

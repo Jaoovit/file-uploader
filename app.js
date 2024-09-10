@@ -19,9 +19,11 @@ initializeSession(app);
 // Routes
 const userRoutes = require("./routes/userRouter");
 const fileRoutes = require("./routes/fileRouter");
+const pageRoutes = require("./routes/pagesRouter");
 
 app.use(userRoutes);
 app.use(fileRoutes);
+app.use(pageRoutes);
 
 const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
