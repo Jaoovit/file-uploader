@@ -63,4 +63,34 @@ const deleteFolderById = async (req, res) => {
   }
 };
 
-module.exports = { createFolder, showAllFolders, deleteFolderById };
+const getFolderById = async (req, res) => {
+  try {
+    const folderId = parseInt(req.params.id, 10);
+
+    if (isNaN(folderId)) {
+      return res.status(400).send("Invalid folder ID");
+    }
+
+    const folder = await prisma.folder.findUnique({
+      where: {
+        id: folderId,
+      },
+    });
+
+    if (!folder) {
+      return res.status(404).send("Folder not found");
+    }
+
+    res.render("folder", { folder });
+  } catch (error) {
+    console.error("Error getting folder:", error);
+    res.status(500).send("Error getting folder");
+  }
+};
+
+module.exports = {
+  createFolder,
+  showAllFolders,
+  deleteFolderById,
+  getFolderById,
+};
