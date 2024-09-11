@@ -20,7 +20,7 @@ const createFolder = async (req, res) => {
         },
       },
     });
-    res.redirect("/");
+    res.redirect("/folders");
   } catch (error) {
     res.status(500).send("Error creating new folder");
   }
@@ -43,4 +43,24 @@ const showAllFolders = async (req, res) => {
   }
 };
 
-module.exports = { createFolder, showAllFolders };
+const deleteFolderById = async (req, res) => {
+  try {
+    const folderId = parseInt(req.params.id, 10);
+
+    if (isNaN(folderId)) {
+      return res.status(400).send("Invalid folder ID");
+    }
+
+    await prisma.folder.delete({
+      where: {
+        id: folderId,
+      },
+    });
+    res.redirect("/folders");
+  } catch (error) {
+    console.error("Error deleting folder:", error);
+    res.status(500).send("Error deleting folder");
+  }
+};
+
+module.exports = { createFolder, showAllFolders, deleteFolderById };

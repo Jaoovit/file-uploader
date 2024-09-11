@@ -23,6 +23,9 @@
                     <form action="folders/<%= folder.id %>" method="GET">
                         <button type="submit">open</button>
                     </form>
+                    <form action="folders/delete/<%= folder.id %>" method="POST">
+                        <button type="submit">delete</button>
+                    </form>
                 </li>
             <% }); %>
         </ul>
