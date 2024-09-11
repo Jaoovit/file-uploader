@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folders</title>
+</head>
+<body>
+    <h1>Folders</h1>
+    <h2>Add a new folder here</h2>
+        <form action="/createFolder" method="POST">
+            <label for="folderName">Folder name: </label>
+            <input type="text" name="folderName" id="folderName">
+            <button type="submit">add</button>
+        </form>
+    <h2>Your folder list</h2>
+    <% if (folders.length > 0) { %>
+        <ul>
+            <% folders.forEach(folder => { %>
+                <li>
+                    <strong>Folder Name:</strong> <%= folder.name %> <br>
+                    <strong>Created Time:</strong> <%= folder.createdTime %>
+                    <form action="folders/<%= folder.id %>" method="GET">
+                        <button type="submit">open</button>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>You have no folders.</p>
+    <% } %>
+</body>
+</html>

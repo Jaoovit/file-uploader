@@ -12,6 +12,7 @@
             <form action="/logout" method="POST">
                 <button type="submit">logout</button>
             </form>
+            <a href="/folders">Look your folders here</a>
         </header>
         <!--
         <h2>Add a new file here</h2>
@@ -20,12 +21,6 @@
             <button type="submit">upload</button>
         </form>
         --->
-        <h2>Add a new folder here</h2>
-        <form action="/folder" method="POST">
-            <label for="folderName">Folder name: </label>
-            <input type="text" name="folderName" id="folderName">
-            <button type="submit">add</button>
-        </form>
     <% } else { %>
         <h1>Welcome to uploader file</h1>
         <p>If you don't have an account <a href="/register">Create your account</a></p>
