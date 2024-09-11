@@ -4,7 +4,8 @@ const router = express.Router();
 
 router.post("/createFolder", folderController.createFolder);
 router.get("/folders", folderController.showAllFolders);
-router.post("/folders/delete/:id", folderController.deleteFolderById);
-router.get("/folders/:id", folderController.getFolderById);
+router.post("/folder/delete/:id", folderController.deleteFolderById);
+router.get("/folder/:id", folderController.getFolderById);
+router.post("/folder/update/:id", folderController.updateFolderById);
 
 module.exports = router;

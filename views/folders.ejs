@@ -20,11 +20,16 @@
                 <li>
                     <strong>Folder Name:</strong> <%= folder.name %> <br>
                     <strong>Created Time:</strong> <%= folder.createdTime %>
-                    <form action="folders/<%= folder.id %>" method="GET">
+                    <form action="folder/<%= folder.id %>" method="GET">
                         <button type="submit">open</button>
                     </form>
-                    <form action="folders/delete/<%= folder.id %>" method="POST">
+                    <form action="folder/delete/<%= folder.id %>" method="POST">
                         <button type="submit">delete</button>
+                    </form>
+                    <form action="/folder/update/<%= folder.id %>" method="POST">
+                        <label for="newFolderName">New Folder Name:</label>
+                        <input type="text" id="newFolderName" name="newFolderName" value="<%= folder.name %>">
+                        <button type="submit">Update</button>
                     </form>
                 </li>
             <% }); %>

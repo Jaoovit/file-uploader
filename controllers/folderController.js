@@ -88,9 +88,34 @@ const getFolderById = async (req, res) => {
   }
 };
 
+const updateFolderById = async (req, res) => {
+  try {
+    const folderId = parseInt(req.params.id, 10);
+    const newFolderName = req.body.newFolderName;
+
+    if (isNaN(folderId)) {
+      return res.status(400).send("Invalid folder ID");
+    }
+
+    await prisma.folder.update({
+      where: {
+        id: folderId,
+      },
+      data: {
+        name: newFolderName,
+      },
+    });
+    res.redirect("/folders");
+  } catch (error) {
+    console.error("Error updating folder:", error);
+    res.status(500).send("Error updating folder");
+  }
+};
+
 module.exports = {
   createFolder,
   showAllFolders,
   deleteFolderById,
   getFolderById,
+  updateFolderById,
 };
