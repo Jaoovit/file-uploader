@@ -23,7 +23,6 @@ const registerUser = async (req, res) => {
         lastName,
       },
     });
-    res.status(201).send("User registered successfully");
     res.redirect("/login");
   } catch (error) {
     res.status(500).send("Error registering user");

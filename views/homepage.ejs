@@ -13,10 +13,18 @@
                 <button type="submit">logout</button>
             </form>
         </header>
+        <!--
         <h2>Add a new file here</h2>
         <form action="/document" method="POST" enctype="multipart/form-data">
-            <input type="file" name="document">
+            <input type="file" name="document" id="document">
             <button type="submit">upload</button>
+        </form>
+        --->
+        <h2>Add a new folder here</h2>
+        <form action="/folder" method="POST">
+            <label for="folderName">Folder name: </label>
+            <input type="text" name="folderName" id="folderName">
+            <button type="submit">add</button>
         </form>
     <% } else { %>
         <h1>Welcome to uploader file</h1>

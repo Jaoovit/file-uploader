@@ -20,10 +20,12 @@ initializeSession(app);
 const userRoutes = require("./routes/userRouter");
 const fileRoutes = require("./routes/fileRouter");
 const pageRoutes = require("./routes/pagesRouter");
+const folderRoutes = require("./routes/folderRouter");
 
 app.use(userRoutes);
 app.use(fileRoutes);
 app.use(pageRoutes);
+app.use(folderRoutes);
 
 const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
