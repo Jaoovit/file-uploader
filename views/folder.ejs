@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Folder Details</title>
+    <title>Folder</title>
 </head>
 <body>
-    <h1>Folder Details</h1>
+    <h1>Folder</h1>
     <div>
-        <h2>Folder Name: <%= folder.name %></h2>
+        <h2><%= folder.name %></h2>
         <p>Created Time: <%= folder.createdTime %></p>
-        <p>Folder ID: <%= folder.id %></p>
     </div>
-    <a href="/folders">Back to Folders</a>
+    <h2>Add a new file here</h2>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="document" id="document">
+            <input type="hidden" name="folderId" value="<%= folder.id %>">
+            <button type="submit">upload</button>
+        </form>
+    <div>
+        <a href="/folders">Back to Folders</a>
+        <a href="/">Back to Homepage</a>
+    </div>
 </body>
 </html>
