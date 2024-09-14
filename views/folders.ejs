@@ -31,6 +31,12 @@
                         <input type="text" id="newFolderName" name="newFolderName" value="<%= folder.name %>">
                         <button type="submit">Update</button>
                     </form>
+                    <form action="/folder/share/<%= folder.id %>" method="POST">
+                        <label for="duration">Share Duration:</label>
+                        <input type="number" name="duration" id="duration" min="1" required />
+                        <button type="submit">Share Folder</button>
+                      </form>
+                      
                 </li>
             <% }); %>
         </ul>

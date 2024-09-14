@@ -1,6 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
+const { v4: uuidv4 } = require("uuid");
 
 const createFolder = async (req, res) => {
   try {
@@ -124,10 +125,46 @@ const updateFolderById = async (req, res) => {
   }
 };
 
+const shareFolder = async (req, res) => {
+  const { id } = req.params;
+  const { duration } = req.body;
+
+  const expiresAt = new Date();
+  expiresAt.setDate(expiresAt.getDate() + parseInt(duration, 10));
+
+  try {
+    const sharedFolder = await prisma.sharedFolder.create({
+      data: {
+        folderId: parseInt(id, 10),
+        expiresAt: expiresAt,
+      },
+    });
+    res.redirect("/folders");
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const viewAllSharedFolders = async (req, res) => {
+  try {
+    const sharedFolders = await prisma.sharedFolder.findMany({
+      include: {
+        folder: true,
+      },
+    });
+
+    res.render("sharedFolder", { sharedFolders });
+  } catch (error) {
+    res.status(500).render("error", { error: error.message });
+  }
+};
+
 module.exports = {
   createFolder,
   showAllFolders,
   deleteFolderById,
   getFolderById,
   updateFolderById,
+  shareFolder,
+  viewAllSharedFolders,
 };

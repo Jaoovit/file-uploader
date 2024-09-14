@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Shared Folders</title>
+</head>
+<body>
+    <h1>All Shared Folders</h1>
+    <ul>
+    <% if (sharedFolders.length > 0) { %>
+      <% sharedFolders.forEach(sharedFolder => { %>
+        <li>
+          <a href="/folder/<%= sharedFolder.folderId %>"><%= sharedFolder.folder.name %></a> - Expires on: <%= sharedFolder.expiresAt.toDateString() %>
+        </li>
+        <% }); %>
+        <% } else { %>
+            <li>No shared folders available.</li>
+            <% } %>
+        </ul>
+        <a href="/">Back to the homepage</a>
+</body>
+</html>

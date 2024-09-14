@@ -33,6 +33,7 @@ model Folder {
   userId      Int
   user        User    @relation(fields: [userId], references: [id])
   file        File[]
+  sharedFolders SharedFolder[]
 }
 
 model File {
@@ -46,4 +47,13 @@ model File {
   folderId    Int
   folder      Folder   @relation(fields: [folderId], references: [id])
 }
+
+model SharedFolder {
+  id         String   @id @default(uuid())
+  folderId   Int
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  folder     Folder   @relation(fields: [folderId], references: [id])
+}
+
 
