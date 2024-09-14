@@ -1,54 +1,39 @@
 const { PrismaClient } = require("@prisma/client");
 const fs = require("fs");
 const path = require("path");
+const cloudinary = require("../config/cloudinary");
 
 const prisma = new PrismaClient();
 
 const uploadFile = async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: "No file uploaded" });
+  }
   try {
-    const {
-      originalname: fileName,
-      size: fileSize,
-      mimetype: mimeType,
-      path: filePath,
-    } = req.file;
-
-    const { folderId } = req.body;
-    const folderIdInt = Number(folderId);
-
-    const userId = req.session.userInfo.id;
-
-    const folder = await prisma.folder.findFirst({
-      where: {
-        id: folderIdInt,
-        userId: userId,
-      },
+    const result = await new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream({ resource_type: "auto" }, (error, result) => {
+          if (error) return reject(error);
+          resolve(result);
+        })
+        .end(req.file.buffer);
     });
 
-    if (!folder) {
-      return res
-        .status(404)
-        .json({ message: "Folder not found or not accessible" });
-    }
-
-    const uploadTime = new Date();
-
-    const newFile = await prisma.file.create({
+    const file = await prisma.file.create({
       data: {
-        name: fileName,
-        size: fileSize,
-        mimeType: mimeType,
-        path: filePath,
-        uploadTime: uploadTime,
-        folder: {
-          connect: { id: folder.id },
-        },
+        name: req.file.originalname,
+        size: req.file.size,
+        mimeType: req.file.mimetype,
+        cloudinaryUrl: result.secure_url,
+        cloudinaryPublicId: result.public_id,
+        uploadTime: new Date(),
+        folderId: parseInt(req.body.folderId, 10),
       },
     });
-    res.redirect(`/folder/${folderId}`);
+
+    res.redirect(`/folder/${req.body.folderId}`);
   } catch (error) {
-    console.error("Error registering file:", error);
-    res.status(500).send("Error registering file");
+    res.status(500).json({ error: error.message });
   }
 };
 
