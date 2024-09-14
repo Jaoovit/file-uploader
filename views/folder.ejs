@@ -22,11 +22,13 @@
             <% files.forEach(file => { %>
                 <li>
                     <strong>File Name:</strong> <%= file.name %> <br>
-                    <strong>File Size:</strong> <%= file.size %>
+                    <strong>File Size:</strong> <%= file.size %> <br>
+                    <strong>File Id:</strong> <%= file.id %>
                     <form action="">
                         <button type="input">download</button>
                     </form>
-                    <form action="">
+                    <form action="/file/delete/<%= file.id %>" method="POST">
+                        <input type="hidden" name="folderId" value="<%= folder.id %>">
                         <button type="input">delete</button>
                     </form>
                 </li>

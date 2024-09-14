@@ -49,4 +49,25 @@ const uploadFile = async (req, res) => {
     res.status(500).send("Error registering file");
   }
 };
-module.exports = { uploadFile };
+
+const deleteFileById = async (req, res) => {
+  try {
+    const fileId = parseInt(req.params.id, 10);
+    const folderId = parseInt(req.body.folderId, 10);
+
+    if (!fileId) {
+      return res.status(400).send("File not founded");
+    }
+
+    await prisma.file.delete({
+      where: {
+        id: fileId,
+      },
+    });
+    res.redirect(`/folder/${folderId}`);
+  } catch (error) {
+    res.status(500).send("Error to delete file");
+  }
+};
+
+module.exports = { uploadFile, deleteFileById };
