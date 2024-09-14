@@ -17,6 +17,24 @@
             <input type="hidden" name="folderId" value="<%= folder.id %>">
             <button type="submit">upload</button>
         </form>
+        <% if (files.length > 0) { %>
+            <ul>
+            <% files.forEach(file => { %>
+                <li>
+                    <strong>File Name:</strong> <%= file.name %> <br>
+                    <strong>File Size:</strong> <%= file.size %>
+                    <form action="">
+                        <button type="input">download</button>
+                    </form>
+                    <form action="">
+                        <button type="input">delete</button>
+                    </form>
+                </li>
+            <% }); %>
+            </ul>
+        <% } else { %>
+            <p>Your don't have any file in this folder</p>
+        <% } %> 
     <div>
         <a href="/folders">Back to Folders</a>
         <a href="/">Back to Homepage</a>

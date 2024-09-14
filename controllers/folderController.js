@@ -75,13 +75,16 @@ const getFolderById = async (req, res) => {
       where: {
         id: folderId,
       },
+      include: {
+        file: true,
+      },
     });
 
     if (!folder) {
       return res.status(404).send("Folder not found");
     }
 
-    res.render("folder", { folder });
+    res.render("folder", { folder, files: folder.file });
   } catch (error) {
     console.error("Error getting folder:", error);
     res.status(500).send("Error getting folder");

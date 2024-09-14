@@ -49,5 +49,4 @@ const uploadFile = async (req, res) => {
     res.status(500).send("Error registering file");
   }
 };
-
 module.exports = { uploadFile };
