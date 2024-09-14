@@ -51,11 +51,20 @@ const deleteFolderById = async (req, res) => {
       return res.status(400).send("Invalid folder ID");
     }
 
-    await prisma.folder.delete({
-      where: {
-        id: folderId,
-      },
+    await prisma.$transaction(async (prisma) => {
+      await prisma.file.deleteMany({
+        where: {
+          folderId: folderId,
+        },
+      });
+
+      await prisma.folder.delete({
+        where: {
+          id: folderId,
+        },
+      });
     });
+
     res.redirect("/folders");
   } catch (error) {
     console.error("Error deleting folder:", error);
