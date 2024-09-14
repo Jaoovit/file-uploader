@@ -24,7 +24,8 @@
                     <strong>File Name:</strong> <%= file.name %> <br>
                     <strong>File Size:</strong> <%= file.size %> <br>
                     <strong>File Id:</strong> <%= file.id %>
-                    <form action="">
+                    <form action="/file/download/<%= file.id %>" method="POST">
+                        <input type="hidden" name="folderId" value="<%= folder.id %>">
                         <button type="input">download</button>
                     </form>
                     <form action="/file/delete/<%= file.id %>" method="POST">
