@@ -6,6 +6,9 @@
     <title>Homepage</title>
 </head>
 <body>
+    <header>
+        <h2><a href="/">File Uploader</a></h2>
+    </header>
     <% if(info) { %>
         <header>
             <h1>Welcome <%= info.firstName %></h1>
@@ -16,9 +19,17 @@
             <a href="/sharedFolders">Look folders shared for anothers users</a>
         </header>
     <% } else { %>
-        <h1>Welcome to uploader file</h1>
-        <p>If you don't have an account <a href="/register">Create your account</a></p>
-        <p>If you already have an account <a href="/login">Login in your account</a></p>
+        <div class="center-content">
+            <h1>Welcome to File Uploader</h1>
+            <h2>This is the place where you can save and share your documents easily and securely</h2>
+            <p>If you don't have an account <a href="/register">Create your account</a></p>
+            <p>If you already have an account <a href="/login">Login in your account</a></p>
+            <form action="/login" method="POST">
+                <input type="hidden" name="username" id="username" value="Recruiter_Recruiter">
+                <input type="hidden" name="password" id="password" value="recruiter">
+                <button type="submit">Log in as a recruiter</button>
+            </form>
+        </div>
     <% } %>
     
 </body>
