@@ -55,7 +55,7 @@ header h2 a {
     color: #0057b9;
 }
 
-button {
+.normal-button {
     padding: 12px 24px;
     font-size: 1rem;
     color: #fff;
@@ -66,7 +66,7 @@ button {
     font-weight: bold;
 }
 
-button:hover {
+.normal-button:hover {
     background-color: #0057b9;
 }
 
@@ -91,6 +91,20 @@ button:hover {
     color: #333;
 }
 
+.create-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.create-form div {
+    display: flex;
+    gap: 1rem;
+}
+
 input {
     width: 100%;
     padding: 10px;
@@ -105,6 +119,38 @@ input:focus {
     outline: none;
     box-shadow: 0 0 3px rgba(74, 144, 226, 0.5);
 }
+
+.icon-button {
+    background: none;
+    border: none;
+    font-size: 8rem;
+    color: #F9E79F;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.folder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.folder-case {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-inline: 3rem;
+}
+
 
 @media (max-width: 768px) {
     .main-content h1 {

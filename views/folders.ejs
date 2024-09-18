@@ -3,48 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Folders</title>
 </head>
 <body>
     <header>
         <h2><a href="/">File Uploader</a></h2>
-    </header>
-    <h1>Folders</h1>
-    <h2>Add a new folder here</h2>
-        <form action="/createFolder" method="POST">
-            <label for="folderName">Folder name: </label>
-            <input type="text" name="folderName" id="folderName">
-            <button type="submit">add</button>
+        <form action="/logout" method="POST">
+            <button type="submit" class="normal-button">Logout</button>
         </form>
-    <h2>Your folder list</h2>
-    <% if (folders.length > 0) { %>
-        <ul>
-            <% folders.forEach(folder => { %>
-                <li>
-                    <strong>Folder Name:</strong> <%= folder.name %> <br>
-                    <strong>Created Time:</strong> <%= folder.createdTime %>
-                    <form action="folder/<%= folder.id %>" method="GET">
-                        <button type="submit">open</button>
-                    </form>
-                    <form action="folder/delete/<%= folder.id %>" method="POST">
-                        <button type="submit">delete</button>
-                    </form>
-                    <form action="/folder/update/<%= folder.id %>" method="POST">
-                        <label for="newFolderName">New Folder Name:</label>
-                        <input type="text" id="newFolderName" name="newFolderName" value="<%= folder.name %>">
-                        <button type="submit">Update</button>
-                    </form>
-                    <form action="/folder/share/<%= folder.id %>" method="POST">
-                        <label for="duration">Share Duration:</label>
-                        <input type="number" name="duration" id="duration" min="1" required />
-                        <button type="submit">Share Folder</button>
-                      </form>
-                      
-                </li>
-            <% }); %>
-        </ul>
-    <% } else { %>
-        <p>You have no folders.</p>
-    <% } %>
+    </header>
+    <div class="main-content">
+        <h2>Add a new folder:</h2>
+            <form action="/createFolder" method="POST" class="create-form">
+                <div>
+                    <input type="text" name="folderName" id="folderName">
+                    <button type="submit" class="normal-button">add</button>
+                </div>
+            </form>
+        <% if (folders.length > 0) { %>
+            <ul class="folder-case">
+                <% folders.forEach(folder => { %>
+                    <li class="folder">
+                        <form action="folder/<%= folder.id %>" method="GET">
+                            <button type="submit" class="icon-button">
+                                <i class="fa-solid fa-folder"></i>
+                            </button>
+                        </form>
+                        <strong><%= folder.name %> </strong><br>                          
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>You have no folders.</p>
+        <% } %>
+    </div>
 </body>
 </html>

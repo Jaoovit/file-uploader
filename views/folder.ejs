@@ -13,6 +13,19 @@
     <div>
         <h2><%= folder.name %></h2>
         <p>Created Time: <%= folder.createdTime %></p>
+        <form action="folder/delete/<%= folder.id %>" method="POST">
+            <button type="submit">delete</button>
+        </form>
+        <form action="/folder/update/<%= folder.id %>" method="POST">
+            <label for="newFolderName">New Folder Name:</label>
+            <input type="text" id="newFolderName" name="newFolderName" value="<%= folder.name %>">
+            <button type="submit">Update</button>
+        </form>
+        <form action="/folder/share/<%= folder.id %>" method="POST">
+            <label for="duration">Share Duration:</label>
+            <input type="number" name="duration" id="duration" min="1" required />
+            <button type="submit">Share Folder</button>
+          </form>
     </div>
     <h2>Add a new file here</h2>
         <form action="/upload" method="POST" enctype="multipart/form-data">
