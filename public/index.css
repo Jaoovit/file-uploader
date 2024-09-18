@@ -70,6 +70,42 @@ button:hover {
     background-color: #0057b9;
 }
 
+.log-reg-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 3rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.log-reg-form p {
+    margin-bottom: 15px;
+}
+
+.log-reg-form label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 3px rgba(74, 144, 226, 0.5);
+}
+
 @media (max-width: 768px) {
     .main-content h1 {
         font-size: 2rem;

@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
     <title>Login</title>
 </head>
 <body>
     <header>
         <h2><a href="/">File Uploader</a></h2>
     </header>
-    <h1>Login to your account</h1>
-    <form action="/login" method="POST">
-        <p>
-            <label for="username">Username: </label>
-            <input type="text" name="username" id="username" required>
-        </p>
-        <p>
-            <label for="password">Password: </label>
-            <input type="password" name="password" id="password" required>
-        </p>
-        <p>
-            <button type="submit">login</button>
-        </p>
-    </form>
+    <div class="main-content">
+        <h1>Login to your account</h1>
+        <form action="/login" method="POST" class="log-reg-form">
+            <p>
+                <label for="username">Username: </label>
+                <input type="text" name="username" id="username" required>
+            </p>
+            <p>
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="password" required>
+            </p>
+            <p>
+                <button type="submit">login</button>
+            </p>
+        </form>
+        <p>If you don't have an account <a href="/register">Create your account</a></p>
+    </div>
 </body>
 </html>

@@ -3,42 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
     <title>Register</title>
 </head>
 <body>
     <header>
         <h2><a href="/">File Uploader</a></h2>
     </header>
-    <h1>Create your account:</h1>
-    <form action="/register" method="POST">
-        <p>
-            <label for="firstName">First name: </label>
-            <input type="text" name="firstName" id="firstName" placeholder="John" required>
-        </p>
-        <p>
-            <label for="lastName">Last name: </label>
-            <input type="text" name="lastName" id="lastName" placeholder="Doe" required>
-        </p>
-        <p>
-            <label for="username">Username: </label>
-            <input type="text" name="username" id="username" placeholder="John_Doe" required>
-        </p>
-        <p>
-            <label for="password">Password: </label>
-            <input type="password" name="password" id="password" required>
-        </p>
-        <p>
-            <label for="confPassword">Confirm password: </label>
-            <input type="password" name="confPassword" id="confPassword" required>
-        </p>
-        <p>
-            <label for="email">Email: </label>
-            <input type="email" name="email" id="email" placeholder="John_Doe@gmail.com" required>
-        </p>
-        <p>
-            <button type="submit">create account</button>
-        </p>        
-    </form>
-    
+    <div class="main-content">
+        <h1>Create your account:</h1>
+        <form action="/register" method="POST" class="log-reg-form">
+            <p>
+                <label for="firstName">First name: </label>
+                <input type="text" name="firstName" id="firstName" placeholder="John" required>
+            </p>
+            <p>
+                <label for="lastName">Last name: </label>
+                <input type="text" name="lastName" id="lastName" placeholder="Doe" required>
+            </p>
+            <p>
+                <label for="username">Username: </label>
+                <input type="text" name="username" id="username" placeholder="John_Doe" required>
+            </p>
+            <p>
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="password" required>
+            </p>
+            <p>
+                <label for="confPassword">Confirm password: </label>
+                <input type="password" name="confPassword" id="confPassword" required>
+            </p>
+            <p>
+                <label for="email">Email: </label>
+                <input type="email" name="email" id="email" placeholder="John_Doe@gmail.com" required>
+            </p>
+            <p>
+                <button type="submit">create account</button>
+            </p>        
+        </form>
+        <p>If you already have an account <a href="/login">Login in your account</a></p>
+    </div>
 </body>
 </html>
