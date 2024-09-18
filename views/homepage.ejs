@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/homepage.css">
     <title>Homepage</title>
 </head>
 <body>
-    <header>
-        <h2><a href="/">File Uploader</a></h2>
-    </header>
     <% if(info) { %>
         <header>
-            <h1>Welcome <%= info.firstName %></h1>
+            <h2><a href="/">File Uploader</a></h2>
             <form action="/logout" method="POST">
-                <button type="submit">logout</button>
+                <button type="submit">Logout</button>
             </form>
-            <a href="/folders">Look your folders here</a>
-            <a href="/sharedFolders">Look folders shared for anothers users</a>
         </header>
+        <div class="main-content">
+            <h1>Welcome <%= info.firstName %></h1>
+            <a href="/folders">Your Folders</a>
+            <a href="/sharedFolders">Users shared folders</a>
+        </div>
     <% } else { %>
-        <div class="center-content">
+        <header>
+            <h2><a href="/">File Uploader</a></h2>
+        </header>
+        <div class="main-content">
             <h1>Welcome to File Uploader</h1>
             <h2>This is the place where you can save and share your documents easily and securely</h2>
             <p>If you don't have an account <a href="/register">Create your account</a></p>
