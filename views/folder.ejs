@@ -3,46 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Folder</title>
 </head>
 <body>
     <header>
         <h2><a href="/">File Uploader</a></h2>
+        <div class="folder-nav-bar">
+            <form action="/folders" method="GET">
+                <button type="submit" class="normal-button">Folders</button>
+            </form>
+            <form action="/logout" method="POST">
+                <button type="submit" class="normal-button">Logout</button>
+            </form>
+        </div>
     </header>
-    <h1>Folder</h1>
-    <div>
-        <h2><%= folder.name %></h2>
-        <p>Created Time: <%= folder.createdTime %></p>
-    </div>
-    <h2>Add a new file here</h2>
-        <form action="/upload" method="POST" enctype="multipart/form-data">
-            <input type="file" name="document" id="document">
-            <input type="hidden" name="folderId" value="<%= folder.id %>">
-            <button type="submit">upload</button>
-        </form>
+    <div class="main-content">
+        <h1><%= folder.name %></h1>
+        <h2>Add a new file:</h2>
+            <form action="/upload" method="POST" class="create-form" enctype="multipart/form-data">
+                <div>
+                    <input type="file" name="document" id="document" class="input-file">
+                    <input type="hidden" name="folderId" value="<%= folder.id %>">
+                    <button type="submit" class="normal-button">upload</button>
+                </div>
+            </form>
         <% if (files.length > 0) { %>
-            <ul>
+            <ul class="file-case">
             <% files.forEach(file => { %>
-                <li>
-                    <strong>File Name:</strong> <%= file.name %> <br>
-                    <strong>File Size:</strong> <%= file.size %> <br>
-                    <strong>File Id:</strong> <%= file.id %>
-                    <form action="/file/download/<%= file.id %>" method="POST">
-                        <input type="hidden" name="folderId" value="<%= folder.id %>">
-                        <button type="input">download</button>
-                    </form>
-                    <form action="/file/delete/<%= file.id %>" method="POST">
-                        <input type="hidden" name="folderId" value="<%= folder.id %>">
-                        <button type="input">delete</button>
-                    </form>
+                <li class="file">
+                    <i class="fa-solid fa-file-lines file-icon"></i>
+                    <strong><%= file.name.length > 10 ? file.name.substring(0, 20) + '...' : file.name %></strong><br>
+                    <div class="file-button-case">
+                        <form action="/file/download/<%= file.id %>" method="GET">
+                            <input type="hidden" name="folderId" value="<%= folder.id %>">
+                            <button type="submit" class="file-download"><i class="fa-solid fa-download"></i></button>
+                        </form>
+                        <form action="/file/delete/<%= file.id %>" method="POST">
+                            <input type="hidden" name="folderId" value="<%= folder.id %>">
+                            <button type="input" class="delete-button"><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                    </div>
                 </li>
             <% }); %>
             </ul>
         <% } else { %>
-            <p>Your don't have any file in this folder</p>
-        <% } %> 
-    <div>
-        <a href="/folders">Back to Folders</a>
-    </div>
+            <h2>Your don't have any file in this folder...</h2>
+        <% } %>
+    </div> 
 </body>
 </html>

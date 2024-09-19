@@ -71,8 +71,8 @@ const downloadFileById = async (req, res) => {
       },
     });
 
-    if (!fileId) {
-      return res.status(400).send("File not founded");
+    if (!file) {
+      return res.status(400).send("File not found");
     }
 
     // Get the file path on server
@@ -97,7 +97,8 @@ const downloadFileById = async (req, res) => {
       res.status(500).send("Error while downloading the file");
     });
   } catch (error) {
-    res.status(500).send("Error dowloading file");
+    console.error("Error in downloadFileById:", error);
+    res.status(500).send("Error downloading file");
   }
 };
 
