@@ -1,6 +1,4 @@
 const { PrismaClient } = require("@prisma/client");
-const fs = require("fs");
-const path = require("path");
 const https = require("https");
 const cloudinary = require("../config/cloudinary");
 
@@ -63,7 +61,6 @@ const downloadFileById = async (req, res) => {
     const fileId = parseInt(req.params.id, 10);
     const userId = req.session.userId;
 
-    // Fetch file record from database
     const file = await prisma.file.findFirst({
       where: {
         id: fileId,
