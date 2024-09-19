@@ -31,13 +31,64 @@
                                 <i class="fa-solid fa-folder"></i>
                             </button>
                         </form>
-                        <strong><%= folder.name %> </strong><br>                          
+                            <strong><%= folder.name %></strong><br>
+                        <div class="folder-button-case">
+                            <button class="edit-button">
+                              <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <button type="submit" class="share-button">
+                                <i class="fa-solid fa-share"></i>
+                            </button>
+                            <form action="folder/delete/<%= folder.id %>" method="POST" >
+                                <button type="submit" class="delete-button">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div><br>
+                        <form action="/folder/update/<%= folder.id %>" method="POST" class="edit-form">
+                            <p><input type="text" id="newFolderName" name="newFolderName" value="<%= folder.name %>"></p><br>
+                            <button type="submit" class="normal-button">Update</button>
+                        </form>
+                        <form action="/folder/share/<%= folder.id %>" method="POST" class="share-form">
+                            <p class="share-case"><input type="number" name="duration" id="duration" min="1" required>days</p><br>
+                            <button type="submit" class="normal-button">Share</button>
+                        </form>
                     </li>
                 <% }); %>
             </ul>
         <% } else { %>
-            <p>You have no folders.</p>
+            <h2>You have no folders...</h2>
         <% } %>
     </div>
+    <script>
+        document.querySelectorAll('.edit-button').forEach((button, index) => {
+            button.addEventListener('click', function() {
+                const editForm = document.querySelectorAll('.edit-form')[index];
+                const shareForm = document.querySelectorAll('.share-form')[index];
+                
+                if (editForm.style.display === 'block') {
+                    editForm.style.display = 'none';
+                } else {
+                    editForm.style.display = 'block';
+                    shareForm.style.display = 'none';
+                }
+            });
+        });
+    
+        document.querySelectorAll('.share-button').forEach((button, index) => {
+            button.addEventListener('click', function() {
+                const shareForm = document.querySelectorAll('.share-form')[index];
+                const editForm = document.querySelectorAll('.edit-form')[index];
+                
+                if (shareForm.style.display === 'block') {
+                    shareForm.style.display = 'none';
+                } else {
+                    shareForm.style.display = 'block';
+                    editForm.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    
 </body>
 </html>

@@ -140,6 +140,10 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .folder-case {
@@ -149,6 +153,50 @@ ul {
     align-items: center;
     gap: 2rem;
     margin-inline: 3rem;
+}
+
+.delete-button {
+    background: none;
+    font-size: 1rem;
+    color: #FF6961;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.share-button, .edit-button {
+    background: none;
+    font-size: 1rem;
+    color: #4a90e2;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+
+.folder-button-case {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.edit-form, .share-form {
+    display: none;
+    max-width: 8rem;
+}
+
+.share-case {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 
