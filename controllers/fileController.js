@@ -1,6 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const fs = require("fs");
 const path = require("path");
+const https = require("https");
 const cloudinary = require("../config/cloudinary");
 
 const prisma = new PrismaClient();
@@ -62,6 +63,7 @@ const downloadFileById = async (req, res) => {
     const fileId = parseInt(req.params.id, 10);
     const userId = req.session.userId;
 
+    // Fetch file record from database
     const file = await prisma.file.findFirst({
       where: {
         id: fileId,
@@ -72,30 +74,33 @@ const downloadFileById = async (req, res) => {
     });
 
     if (!file) {
-      return res.status(400).send("File not found");
+      return res.status(404).send("File not found");
     }
 
-    // Get the file path on server
-    const filePath = path.resolve(file.path);
+    const fileUrl = file.cloudinaryUrl;
 
-    // Check if file exist
-    if (!fs.existsSync(filePath)) {
-      return res.status(404).json({ message: "File not found on server" });
-    }
+    https
+      .get(fileUrl, (fileStream) => {
+        // Set headers for downloading the file
+        res.setHeader(
+          "Content-Disposition",
+          `attachment; filename="${file.name}"`
+        );
+        res.setHeader("Content-Type", fileStream.headers["content-type"]);
 
-    // Set the header file to appropriate download
-    res.setHeader("Content-Disposition", `attachment; filename="${file.name}"`);
-    res.setHeader("Content-Type", file.mimeType);
+        // Pipe the response data from Cloudinary to the client
+        fileStream.pipe(res);
 
-    // Stream the file back to client
-    const fileStream = fs.createReadStream(filePath);
-    fileStream.pipe(res);
-
-    // Handle error in file streaming
-    fileStream.on("error", (error) => {
-      console.error("Error while streaming file:", error);
-      res.status(500).send("Error while downloading the file");
-    });
+        // Handle errors in streaming
+        fileStream.on("error", (error) => {
+          console.error("Error while streaming file:", error);
+          res.status(500).send("Error while downloading the file");
+        });
+      })
+      .on("error", (error) => {
+        console.error("Error while fetching file from Cloudinary:", error);
+        res.status(500).send("Error while fetching the file from Cloudinary");
+      });
   } catch (error) {
     console.error("Error in downloadFileById:", error);
     res.status(500).send("Error downloading file");

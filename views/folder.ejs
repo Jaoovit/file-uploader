@@ -36,7 +36,7 @@
                     <i class="fa-solid fa-file-lines file-icon"></i>
                     <strong><%= file.name.length > 10 ? file.name.substring(0, 20) + '...' : file.name %></strong><br>
                     <div class="file-button-case">
-                        <form action="/file/download/<%= file.id %>" method="GET">
+                        <form action="/file/download/<%= file.id %>" method="POST">
                             <input type="hidden" name="folderId" value="<%= folder.id %>">
                             <button type="submit" class="file-download"><i class="fa-solid fa-download"></i></button>
                         </form>
