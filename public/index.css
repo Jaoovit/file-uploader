@@ -242,6 +242,10 @@ ul {
     padding: 10px;
 }
 
+.main-phrase {
+    max-width: 800px;
+    line-height: 2;
+}
 
 @media (max-width: 768px) {
     .main-content h1 {
