@@ -118,7 +118,7 @@ const updateFolderById = async (req, res) => {
         name: newFolderName,
       },
     });
-    res.redirect(`/folder/${folderId}`);
+    res.redirect(`/folders`);
   } catch (error) {
     console.error("Error updating folder:", error);
     res.status(500).send("Error updating folder");
