@@ -3,21 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Shared Folders</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Shared Folders</title>
 </head>
 <body>
-    <h1>All Shared Folders</h1>
-    <ul>
-    <% if (sharedFolders.length > 0) { %>
-      <% sharedFolders.forEach(sharedFolder => { %>
-        <li>
-          <a href="/folder/<%= sharedFolder.folderId %>"><%= sharedFolder.folder.name %></a> - Expires on: <%= sharedFolder.expiresAt.toDateString() %>
-        </li>
-        <% }); %>
-        <% } else { %>
-            <li>No shared folders available.</li>
-            <% } %>
-        </ul>
-        <a href="/">Back to the homepage</a>
+    <header>
+      <h2><a href="/">File Uploader</a></h2>
+      <div class="folder-nav-bar">
+          <form action="/folders" method="GET">
+              <button type="submit" class="normal-button">Folders</button>
+          </form>
+          <form action="/logout" method="POST">
+              <button type="submit" class="normal-button">Logout</button>
+          </form>
+      </div>
+    </header>
+    <div class="main-content">
+    <ul class="folder-case">
+      <% if (sharedFolders.length > 0) { %>
+        <% sharedFolders.forEach(sharedFolder => { %>
+          <li class="folder">
+            <form action="folder/<%= sharedFolder.folderId %>" method="GET">
+              <button type="submit" class="icon-button">
+                  <i class="fa-solid fa-folder"></i>
+              </button>
+          </form>
+              <strong><%= sharedFolder.folder.name %></strong><br>
+              <p> Available until: <%= sharedFolder.expiresAt.toDateString() %></p>
+          </li>
+          <% }); %>
+          <% } else { %>
+              <h2>No shared folders available...</h2>
+              <% } %>
+          </ul>
+    </div>
 </body>
 </html>

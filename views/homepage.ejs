@@ -10,14 +10,20 @@
     <% if(info) { %>
         <header>
             <h2><a href="/">File Uploader</a></h2>
-            <form action="/logout" method="POST">
-                <button type="submit" class="normal-button">Logout</button>
-            </form>
+            <div class="folder-nav-bar">
+                <form action="/folders" method="GET">
+                    <button type="submit" class="normal-button">Folders</button>
+                </form>
+                <form action="/sharedFolders" method="GET">
+                    <button type="submit" class="normal-button">Shared Folders</button>
+                </form>
+                <form action="/logout" method="POST">
+                    <button type="submit" class="normal-button">Logout</button>
+                </form>
+            </div>
         </header>
         <div class="main-content">
             <h1>Welcome <%= info.firstName %></h1>
-            <a href="/folders">Your Folders</a>
-            <a href="/sharedFolders">Users shared folders</a>
         </div>
     <% } else { %>
         <header>

@@ -145,6 +145,28 @@ const shareFolder = async (req, res) => {
   }
 };
 
+const deleteExpiredFolders = async (req, res) => {
+  try {
+    const currentTime = new Date();
+    const expiredFolders = await prisma.sharedFolder.findMany({
+      where: {
+        expiresAt: {
+          lte: currentTime,
+        },
+      },
+    });
+    for (const folder of expiredFolders) {
+      await prisma.sharedFolder.delete({
+        where: {
+          id: folder.id,
+        },
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const viewAllSharedFolders = async (req, res) => {
   try {
     const sharedFolders = await prisma.sharedFolder.findMany({
@@ -167,4 +189,5 @@ module.exports = {
   updateFolderById,
   shareFolder,
   viewAllSharedFolders,
+  deleteExpiredFolders,
 };

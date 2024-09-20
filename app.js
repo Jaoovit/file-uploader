@@ -3,6 +3,10 @@ const express = require("express");
 const path = require("node:path");
 const initializeSession = require("./config/session");
 
+// Cron Scredule
+const cronScredule = require("./config/cron");
+cronScredule.start();
+
 const app = express();
 
 // Middleware to parte JSON and URL-encoded data
