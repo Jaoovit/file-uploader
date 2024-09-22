@@ -148,6 +148,7 @@ const shareFolder = async (req, res) => {
 const deleteExpiredFolders = async (req, res) => {
   try {
     const currentTime = new Date();
+
     const expiredFolders = await prisma.sharedFolder.findMany({
       where: {
         expiresAt: {
@@ -155,6 +156,7 @@ const deleteExpiredFolders = async (req, res) => {
         },
       },
     });
+
     for (const folder of expiredFolders) {
       await prisma.sharedFolder.delete({
         where: {

@@ -2,10 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const path = require("node:path");
 const initializeSession = require("./config/session");
-
-// Cron Scredule
-const cronScredule = require("./config/cron");
-cronScredule.start();
+const cronSchedule = require("./config/cron");
 
 const app = express();
 
@@ -32,6 +29,9 @@ app.use(userRoutes);
 app.use(fileRoutes);
 app.use(pageRoutes);
 app.use(folderRoutes);
+
+// Cron Scredule
+cronSchedule.start();
 
 const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
