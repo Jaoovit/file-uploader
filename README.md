@@ -51,3 +51,18 @@ This application provides a user-friendly interface for uploading files directly
 3. Create a account in cloudinary https://cloudinary.com
 
 4. Add environment cloudinary variables in .env:
+
+    - CLOUDINARY_CLOUD_NAME=
+    - CLOUDINARY_API_KEY=
+    - CLOUDINARY_API_SECRET=
+
+## 🏃‍➡️ Start
+
+- **Run commands:**
+
+    ```bash
+    npm install
+
+    npx prisma migrate dev --name init
+
+    npm run start
