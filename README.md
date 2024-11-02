@@ -20,6 +20,7 @@ This application provides a user-friendly interface for uploading files directly
 - **PostgreSQL**: Relational database for data persistence.
 - **Prisma**: ORM for database schema and queries.
 - **Cloudinary**: Service for file storage and management.
+- **EJS**: Javascript view template enginne. 
 
 ## ⚙️ Setup
 
